@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
@@ -38,6 +39,8 @@ build/
 ### Mac OS ###
 .DS_Store
 =======
+=======
+>>>>>>> 715fd9c68e69163df78f5fe27bbed3ff0ca64b1e
 
 ##############################
 ## Java
@@ -123,4 +126,7 @@ nb-configuration.xml
 ## OS X
 ##############################
 .DS_Store
+<<<<<<< HEAD
+>>>>>>> 715fd9c68e69163df78f5fe27bbed3ff0ca64b1e
+=======
 >>>>>>> 715fd9c68e69163df78f5fe27bbed3ff0ca64b1e
