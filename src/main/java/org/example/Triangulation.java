@@ -1,34 +1,36 @@
+package org.example;
+
 public class Triangulation {
-    public static double Distancia(EspaceObject a, EspaceObject b) {
-        double d = Math.sqrt(Math.pow((a.x - b.x), 2)
-                + Math.pow((a.y - b.y), 2));
-        return d;
+    private double x;
+    private double y;
+    private boolean located = false;
+    
+    public Triangulation(Intersection eq1, Intersection eq2) {
+        System.out.println("_________");
+        if (Intersection.thereIsImaginary == false) {
+            if (eq1.coordinates.get("x1").equals(eq2.coordinates.get("x1"))) {
+                if (eq1.coordinates.get("y1").equals(eq2.coordinates.get("y1"))) {
+                    x = eq1.coordinates.get("x1");
+                    y = eq1.coordinates.get("y1");
+                    located = true;
+                }
+            } else if (eq1.coordinates.get("x2").equals(eq2.coordinates.get("x2"))) {
+                if (eq1.coordinates.get("y2").equals(eq2.coordinates.get("y2"))) {
+                    x = eq1.coordinates.get("x2");
+                    y = eq1.coordinates.get("y2");
+                    located = true;
+                }
+            } 
+        } 
+        PrintLocation();
     }
 
-    public static void main(String[] args) {
-        //Satellites
-        EspaceObject kenobi = new EspaceObject(-500, -200);
-        EspaceObject skywolker = new EspaceObject(100, -100);
-        EspaceObject sato = new EspaceObject(500, 100);
-        //Ship
-        EspaceObject ship = new EspaceObject(300, 200);
-
-        //General Equation Skywolker circumference
-        System.out.println("Skywolker");
-        GeneralEquation eqSkywolker = new GeneralEquation(skywolker.x, skywolker.y, Distancia(skywolker,ship));
-        //General Equation Sato circumference
-        System.out.println("Sato");
-        GeneralEquation eqSato = new GeneralEquation(sato.x,sato.y,Distancia(sato,ship));
-        //General Equation Kenobi circumference
-        System.out.println("Kenobi");
-        GeneralEquation eqKenobi = new GeneralEquation(kenobi.x,kenobi.y,Distancia(kenobi,ship));
-        //Gets the equation bewtween skywolker and sato
-        GeneralEquation skywolkerSato = new GeneralEquation();
-        skywolkerSato.CalculateXY(eqSkywolker,eqSato);
-        //Gets the equation between kenobi and skywolker
-        GeneralEquation kenobiSkywolker = new GeneralEquation();
-        kenobiSkywolker.CalculateXY(eqSkywolker,eqKenobi);
-        //Gets the final coordinates
-        kenobiSkywolker.TriangulationPosition(skywolkerSato, kenobiSkywolker);
+    public void PrintLocation() {
+        if(located){
+            System.out.println("spacecraft " + "x:" + x + " y:" + y);
+        }
+        else {
+            System.out.println("Impossible to locate the spacecraft, incorrect distances");
+        }
     }
 }

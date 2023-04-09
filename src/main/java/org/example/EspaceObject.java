@@ -1,3 +1,5 @@
+package org.example;
+
 public class EspaceObject {
     public double x;
     public double y;

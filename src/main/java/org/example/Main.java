@@ -1,19 +1,36 @@
 package org.example;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
 public class Main {
+    public static double Distancia(EspaceObject a, EspaceObject b) {
+        double d = Math.sqrt(Math.pow((a.x - b.x), 2)
+                + Math.pow((a.y - b.y), 2));
+        return d;
+    }
+
     public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        //Satellites
+        EspaceObject kenobi = new EspaceObject(-500, -200);
+        EspaceObject skywolker = new EspaceObject(100, -100);
+        EspaceObject sato = new EspaceObject(500, 100);
+        //Spacecraft
+        EspaceObject spacecraft = new EspaceObject(300, 200);
 
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
-
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
-        }
+        //General Equation Skywolker circumference
+        System.out.println("Skywolker");
+        GeneralEquation eqSkywolker = new GeneralEquation(skywolker.x, skywolker.y, Distancia(skywolker,spacecraft));
+        //General Equation Sato circumference
+        System.out.println("Sato");
+        GeneralEquation eqSato = new GeneralEquation(sato.x,sato.y,Distancia(sato,spacecraft));
+        //General Equation Kenobi circumference
+        System.out.println("Kenobi");
+        GeneralEquation eqKenobi = new GeneralEquation(kenobi.x,kenobi.y,Distancia(kenobi,spacecraft));
+        //Gets the equation bewtween skywolker and sato
+        System.out.println("skywolkersato intersection");
+        Intersection skywolkerSatoIntersection = new Intersection(eqSkywolker,eqSato);
+        //Gets the equation between kenobi and skywolker
+        System.out.println("kenobiskywolker intersection");
+        Intersection kenobiSkywolkerIntersection = new Intersection(eqSkywolker,eqKenobi);
+        //Gets the coordinates of the spacecraft
+        new Triangulation(skywolkerSatoIntersection, kenobiSkywolkerIntersection);
     }
 }
