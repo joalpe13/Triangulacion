@@ -12,6 +12,8 @@ public class Intersection extends GeneralEquation {
     protected Map<String, Double> coordinates = new HashMap<String, Double>();
 
     public static boolean thereIsImaginary = false;
+    
+    public GeneralEquation intersectionEq;
 
     public Intersection(GeneralEquation eq1, GeneralEquation eq2) {
         super();
@@ -33,18 +35,19 @@ public class Intersection extends GeneralEquation {
     }
 
     public void CalculateIntersections(GeneralEquation eq1) {
-        GeneralEquation eqIntersection = (GeneralEquation) eq1.clone();
+        //Replace X or Y in one general equation to obtain coordinates x,y with the quadratic formula
+        intersectionEq = (GeneralEquation) eq1.clone();
         if (this.y != 0) {
-            eqIntersection.x2 += Math.pow(this.Y.x, 2);
-            eqIntersection.x += 2 * this.Y.x * this.Y.c + eqIntersection.y * this.Y.x;
-            eqIntersection.c += Math.pow(this.Y.c, 2) + eqIntersection.y * this.Y.c;
-            eqIntersection.y2 = 0;
-            eqIntersection.y = 0;
-            System.out.println(eqIntersection);
-            System.out.println("calculo de raiz " + Math.sqrt(Math.pow(eqIntersection.x, 2) - 4 * eqIntersection.x2 * eqIntersection.c));
-            if (Math.sqrt(Math.pow(eqIntersection.x, 2) - 4 * eqIntersection.x2 * eqIntersection.c) >= 0) {
-                double x1 = Math.round((-eqIntersection.x + Math.sqrt(Math.pow(eqIntersection.x, 2) - 4 * eqIntersection.x2 * eqIntersection.c)) / (2 * eqIntersection.x2));
-                double x2 = Math.round((-eqIntersection.x - Math.sqrt(Math.pow(eqIntersection.x, 2) - 4 * eqIntersection.x2 * eqIntersection.c)) / (2 * eqIntersection.x2));
+            intersectionEq.x2 += Math.pow(this.Y.x, 2);
+            intersectionEq.x += 2 * this.Y.x * this.Y.c + intersectionEq.y * this.Y.x;
+            intersectionEq.c += Math.pow(this.Y.c, 2) + intersectionEq.y * this.Y.c;
+            intersectionEq.y2 = 0;
+            intersectionEq.y = 0;
+            System.out.println(intersectionEq);
+            System.out.println("calculo de raiz " + Math.sqrt(Math.pow(intersectionEq.x, 2) - 4 * intersectionEq.x2 * intersectionEq.c));
+            if (Math.sqrt(Math.pow(intersectionEq.x, 2) - 4 * intersectionEq.x2 * intersectionEq.c) >= 0) {
+                double x1 = Math.round((-intersectionEq.x + Math.sqrt(Math.pow(intersectionEq.x, 2) - 4 * intersectionEq.x2 * intersectionEq.c)) / (2 * intersectionEq.x2));
+                double x2 = Math.round((-intersectionEq.x - Math.sqrt(Math.pow(intersectionEq.x, 2) - 4 * intersectionEq.x2 * intersectionEq.c)) / (2 * intersectionEq.x2));
                 double y1 = Math.round(this.Y.c + this.Y.x * x1);
                 double y2 = Math.round(this.Y.c + this.Y.x * x2);
                 coordinates.put("x1", x1);
@@ -57,17 +60,17 @@ public class Intersection extends GeneralEquation {
                 System.out.println("imaginary in x");
             }
         } else {
-            eqIntersection.c += Math.pow(this.X.x, 2) + eqIntersection.x * this.X.x;
-            eqIntersection.x2 = 0;
-            eqIntersection.x = 0;
-            //eqIntersection.y and eqIntersection.y2 continue equal
-            System.out.println(eqIntersection);
-            System.out.println("calculo de raiz" + Math.sqrt(Math.pow(eqIntersection.x, 2) - 4 * eqIntersection.x2 * eqIntersection.c));
-            if (Math.sqrt(Math.pow(eqIntersection.x, 2) - 4 * eqIntersection.x2 * eqIntersection.c) >= 0) {
+            intersectionEq.c += Math.pow(this.X.x, 2) + intersectionEq.x * this.X.x;
+            intersectionEq.x2 = 0;
+            intersectionEq.x = 0;
+            //intersectionEq.y and intersectionEq.y2 continue equal
+            System.out.println(intersectionEq);
+            System.out.println("calculo de raiz" + Math.sqrt(Math.pow(intersectionEq.x, 2) - 4 * intersectionEq.x2 * intersectionEq.c));
+            if (Math.sqrt(Math.pow(intersectionEq.x, 2) - 4 * intersectionEq.x2 * intersectionEq.c) >= 0) {
                 double x1 = Math.round(this.X.x);
                 double x2 = Math.round(this.X.x);
-                double y1 = Math.round((-eqIntersection.y + Math.sqrt(Math.pow(eqIntersection.y, 2) - 4 * eqIntersection.y2 * eqIntersection.c)) / (2 * eqIntersection.y2));
-                double y2 = Math.round((-eqIntersection.y - Math.sqrt(Math.pow(eqIntersection.y, 2) - 4 * eqIntersection.y2 * eqIntersection.c)) / (2 * eqIntersection.y2));
+                double y1 = Math.round((-intersectionEq.y + Math.sqrt(Math.pow(intersectionEq.y, 2) - 4 * intersectionEq.y2 * intersectionEq.c)) / (2 * intersectionEq.y2));
+                double y2 = Math.round((-intersectionEq.y - Math.sqrt(Math.pow(intersectionEq.y, 2) - 4 * intersectionEq.y2 * intersectionEq.c)) / (2 * intersectionEq.y2));
 
                 coordinates.put("x1", x1);
                 coordinates.put("y1", y1);

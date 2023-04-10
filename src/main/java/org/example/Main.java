@@ -13,7 +13,7 @@ public class Main {
         EspaceObject skywolker = new EspaceObject(100, -100);
         EspaceObject sato = new EspaceObject(500, 100);
         //Spacecraft
-        EspaceObject spacecraft = new EspaceObject(300, 200);
+        EspaceObject spacecraft = new EspaceObject(500, 800);
 
         //General Equation Skywolker circumference
         System.out.println("Skywolker");
